@@ -1,0 +1,19 @@
+<h1>UPLOAD Test</h1>
+
+<form enctype="multipart/form-data" method="post" action="./">
+{% csrf_token %}
+{{ form }}
+{% block field_sets %}
+{% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+        {% if field.help_text %}
+        <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+    </div>
+{% endfor %}
+{% endblock %}
+<input type="submit" value="Upload" />
+</form>
+

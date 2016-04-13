@@ -1,0 +1,13 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'calc/style.css' %}" />
+<a href="{% url 'calc:upload'%}">Upload File</a>
+{% if latest_file_list %}
+    <ul>
+    {% for file in latest_file_list %}
+        <li><a href="{% url 'calc:detail' file.id %}">{{ file.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No files are available.</p>
+{% endif %}
