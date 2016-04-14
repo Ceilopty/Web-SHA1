@@ -1,8 +1,9 @@
+{% extends "calc/base.html" %}
+{% block content %}
 <h1>UPLOAD Test</h1>
-
 <form enctype="multipart/form-data" method="post" action="./">
 {% csrf_token %}
-{{ form }}
+{# {{ form }} #}
 {% block field_sets %}
 {% for field in form %}
     <div class="fieldWrapper">
@@ -16,4 +17,5 @@
 {% endblock %}
 <input type="submit" value="Upload" />
 </form>
+{% endblock %}
 

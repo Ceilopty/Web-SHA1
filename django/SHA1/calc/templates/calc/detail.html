@@ -1,18 +1,26 @@
-<h1>{{ file.title }}</h1>
+{% extends "calc/base.html" %}
 
+{% block content %}
+<h1>{{ file.title }}</h1>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<ul>
-    {% for field in latest_file_list %}
-        <li><a href="{% url 'calc:detail' file.id %}">{{ file.title }}</a></li>
-    {% endfor %}
-</ul>
+<table>
+	{% if file.show %}
+	{% for name, value in file.show %}
+	<tr>
+		<td>{{ name|title }}</td>
+		<td>{{ value }}</td>
+	</tr>
+	{% endfor %}
+	{% endif %}
 
-{% comment "Optional note" %}<form action="{% url 'polls:vote' question.id %}" method="post">
-{% csrf_token %}
-{% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
-{% endfor %}
-<input type="submit" value="Vote" />
-</form>{% endcomment %}
+	<tr>
+		<td>SHA1</td>
+		<td>{{ file.sha }}</td>
+	</tr>
+	
+	
+</table>
+{% endblock %}
+
+
